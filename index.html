@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Presentations</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>📚 School Presentations</h1>
+    <button id="admin-login">Admin Login</button>
+    <button id="logout" style="display: none;">Logout</button>
+  </header>
+
+  <main>
+    <aside>
+      <h2>Presentations</h2>
+      <div>
+        <button data-class="Geography">🌍 Geography</button>
+        <button data-class="History">🏰 History</button>
+      </div>
+      <ul id="presentation-list"></ul>
+    </aside>
+
+    <section id="presentation-details">
+      <h2 id="pres-theme">Select a presentation</h2>
+      <p id="pres-date"></p>
+      <iframe id="viewer" width="100%" height="500px" style="display:none;"></iframe>
+    </section>
+  </main>
+
+  <section id="upload-form">
+    <h2>Upload Presentation</h2>
+    <form>
+      <input type="text" id="uploader" placeholder="Your Name" required />
+      <input type="text" id="theme" placeholder="Presentation Theme" required />
+      <select id="class">
+        <option value="Geography">Geography</option>
+        <option value="History">History</option>
+      </select>
+      <input type="file" id="file" accept=".pdf,.ppt,.pptx" required />
+      <button type="submit">Upload</button>
+    </form>
+  </section>
+
+  <section id="admin-panel" style="display: none;">
+    <h2>Admin Panel</h2>
+    <ul id="admin-list"></ul>
+  </section>
+</body>
+</html>

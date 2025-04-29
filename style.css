@@ -1,0 +1,43 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    background: #222;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  main {
+    display: flex;
+    height: 80vh;
+  }
+  
+  aside {
+    width: 250px;
+    background: #f0f0f0;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  
+  section#presentation-details {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  #upload-form, #admin-panel {
+    padding: 1rem;
+    background: #fafafa;
+    border-top: 1px solid #ddd;
+  }
+  
+  button {
+    margin: 0.25rem 0;
+  }
+  
