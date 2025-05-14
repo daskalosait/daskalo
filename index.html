@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Училищни Презентации</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="app.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📚 Училищни Презентации</h1>
+    <div class="auth-buttons">
+      <button id="admin-login">Качи</button>
+      <button id="admin-panel">Admin</button>
+      <button id="logout" style="display: none;">Изход</button>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <h2>Категория</h2>
+      <select id="category-dropdown">
+        <option value="Geography">🌍 География</option>
+        <option value="History">🏰 История</option>
+      </select>
+      <ul id="presentation-list"></ul>
+    </aside>
+
+    <section id="presentation-details" style="display: none;">
+      <button id="fullscreen-btn" style="margin-top: 10px;">🔎 Цял екран</button>
+      <h2 id="pres-theme">Изберете презентация</h2>
+      <p id="pres-date"></p>
+      <div id="reveal-container"></div>
+    </section>
+  </main>
+
+  <div id="upload-popup">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+      <h2>Качи Презентация</h2>
+      <form id="upload-form">
+        <input type="text" id="uploader" placeholder="Две име" required />
+        <input type="text" id="theme" placeholder="Тема на презентацията" required />
+        <select id="class" required>
+          <option value="Geography">География</option>
+          <option value="History">История</option>
+        </select>
+        <input type="file" id="file" accept=".pdf,.ppt,.pptx" required />
+        <button type="submit">Качи</button>
+        <button type="button" id="close-popup">Затвори</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="admin-popup" style="display: none;">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+      <h2>Админ Панел</h2>
+      <div id="admin-login-form">
+        <input type="password" id="admin-password" placeholder="Парола" />
+        <button id="admin-submit">Влез</button>
+      </div>
+      <div id="admin-controls" style="display: none;">
+        <select id="admin-category">
+          <option value="Geography">География</option>
+          <option value="History">История</option>
+        </select>
+        <ul id="admin-list"></ul>
+        <button id="close-admin">Затвори</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
