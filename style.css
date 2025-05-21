@@ -3,6 +3,17 @@ body {
   margin: 0;
   padding: 0;
   background: #f0f4ff;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  border: none;
+  border-radius: 6px;
 }
 
 header {
@@ -21,39 +32,46 @@ header {
   font-size: 1rem;
   background: #fff;
   color: #3f51b5;
-  border: none;
-  border-radius: 6px;
-  transition: background 0.2s;
 }
+
 .auth-buttons button:hover {
   background: #e2e6ff;
 }
 
 main {
   display: flex;
-  flex-wrap: wrap;
+  flex-grow: 1;
   padding: 2rem;
   gap: 2rem;
-  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 aside {
-  width: 280px;
+  flex: 1;
   background: white;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 aside h2 {
   margin-top: 0;
 }
 
-#category-dropdown {
+aside select,
+aside input,
+aside button {
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: 1rem;
   margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 #presentation-list {
@@ -69,45 +87,18 @@ aside h2 {
 #presentation-list button {
   width: 100%;
   text-align: left;
-  padding: 0.5rem;
+  padding: 0.75rem;
   background: #f4f6ff;
   border: 1px solid #d0d7ff;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
 }
+
 #presentation-list button:hover {
   background: #e3e8ff;
 }
 
-#presentation-details {
-  flex: 1;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-  min-width: 300px;
-}
-
-#fullscreen-btn {
-  background: #3f51b5;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-#fullscreen-btn:hover {
-  background: #303f9f;
-}
-
-.upload-card {
-  margin-top: 2rem;
-}
-
-#upload-popup {
+/* ====== Popups ====== */
+#upload-popup,
+#admin-popup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -122,40 +113,55 @@ aside h2 {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
 }
 
 .popup-content {
   position: relative;
+  z-index: 2;
   background: #fff;
   padding: 2rem;
-  border-radius: 12px;
-  z-index: 10001;
   width: 90%;
   max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-form input, form select, form button {
+/* ====== Forms ====== */
+form input,
+form select,
+form button {
+  width: 100%;
   padding: 1rem;
   font-size: 1rem;
-  width: 100%;
   border-radius: 6px;
+  box-sizing: border-box;
   border: 1px solid #ccc;
 }
 
 form button {
   background: #3f51b5;
   color: white;
-  border: none;
 }
+
 form button:hover {
   background: #303f9f;
 }
 
-button {
-  cursor: pointer;
+#admin-login-form,
+#admin-controls,
+#upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.disabled-button {
+  opacity: 0.5 !important;
+  pointer-events: none !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -164,15 +170,9 @@ button {
     padding: 1rem;
   }
 
-  aside, #presentation-details {
-    width: 100%;
+  aside {
+    max-width: 100%;
   }
-}
-
-#upload-popup form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 aside {
@@ -190,79 +190,4 @@ aside button,
 aside input {
   font-size: 1.2rem;
   padding: 1rem;
-}
-
-/* Apply the same style to both upload and admin popups */
-#upload-popup,
-#admin-popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-}
-
-/* Shared popup backdrop for both popups */
-#upload-popup .popup-backdrop,
-#admin-popup .popup-backdrop {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
-}
-
-/* Shared popup content box for both popups */
-#upload-popup .popup-content,
-#admin-popup .popup-content {
-  position: relative;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  z-index: 2;
-  width: 90%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Unified input, select, and button styling */
-#upload-popup input,
-#upload-popup select,
-#upload-popup button,
-#admin-popup input,
-#admin-popup select,
-#admin-popup button {
-  padding: 1rem;
-  font-size: 1rem;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-#upload-popup button,
-#admin-popup button {
-  background: #3f51b5;
-  color: white;
-  border: none;
-  transition: background 0.2s;
-}
-
-#upload-popup button:hover,
-#admin-popup button:hover {
-  background: #303f9f;
-}
-
-/* Ensure form sections stack with spacing */
-#admin-login-form,
-#admin-controls,
-#upload-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
